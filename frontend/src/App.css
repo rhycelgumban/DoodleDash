@@ -1,0 +1,1832 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap');
+
+/* =====================================
+   1. GLOBAL STYLES
+===================================== */
+
+:root {
+  font-family: 'DM Sans', sans-serif;
+  color: #30263b;
+  background: #fff9fc;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+#root {
+  max-width: none;
+  padding: 0;
+}
+
+.dd-app {
+  min-height: 100vh;
+  padding: 0 22px 30px;
+  background:
+    radial-gradient(ellipse at 5% 10%, #ffe7f1 0, transparent 26%),
+    radial-gradient(ellipse at 95% 20%, #eee8ff 0, transparent 25%),
+    #fff9fc;
+}
+
+/* =====================================
+   2. HEADER AND WELCOME
+===================================== */
+
+.topbar {
+  max-width: 1100px;
+  margin: auto;
+  padding: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  border-bottom: 1px solid #f1e4ee;
+  flex-shrink: 0;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 23px;
+  font-weight: 900;
+}
+
+.brand-icon {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 13px;
+  background: #f8c6df;
+  color: #873b6c;
+  transform: rotate(-7deg);
+}
+
+.topbar-note {
+  color: #8d7b91;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.welcome {
+  max-width: 1100px;
+  margin: 35px auto 27px;
+  text-align: center;
+}
+
+.eyebrow,
+.section-label,
+.small-label {
+  color: #b55c8c;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.6px;
+}
+
+.welcome h1 {
+  margin: 9px 0;
+  font-family: 'Nunito', sans-serif;
+  font-size: clamp(30px, 5vw, 43px);
+  font-weight: 900;
+  letter-spacing: -1.3px;
+}
+
+.welcome h1 span {
+  color: #ed78ad;
+}
+
+.welcome p,
+.muted {
+  color: #94869a;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* =====================================
+   3. GENERAL GAME PANEL
+===================================== */
+
+.game-panel {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 25px;
+  border: 1px solid #f0e2ed;
+  border-radius: 22px;
+  background: #fff;
+  box-shadow: 0 15px 50px #71435b0c;
+}
+
+.game-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+  flex-shrink: 0;
+}
+
+.game-topline h2,
+.start-panel h2,
+.results-heading h2 {
+  margin: 6px 0;
+  font-family: 'Nunito', sans-serif;
+  font-size: 25px;
+  font-weight: 900;
+}
+
+.game-topline p {
+  margin: 5px 0 0;
+}
+
+.page-footer {
+  padding-top: 27px;
+  color: #a393a8;
+  font-size: 11px;
+  text-align: center;
+}
+
+.page-footer span {
+  color: #e77faf;
+}
+
+.error-message {
+  max-width: 960px;
+  margin: 0 auto 15px;
+  padding: 12px 15px;
+  border: 1px solid #f4c8c8;
+  border-radius: 10px;
+  background: #fff1f1;
+  color: #a13c4a;
+  font-size: 12px;
+}
+
+/* =====================================
+   4. BUTTONS
+===================================== */
+
+.primary-button,
+.secondary-button {
+  padding: 11px 16px;
+  border-radius: 11px;
+  font-size: 12px;
+  font-weight: 800;
+  transition: transform 0.15s ease;
+}
+
+.primary-button {
+  border: 1px solid #e87eb0;
+  background: #ef91bc;
+  color: #4e2340;
+  box-shadow: 0 4px 0 #e8bfd4;
+}
+
+.primary-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  background: #f4a8ca;
+}
+
+.secondary-button {
+  border: 1px solid #eee3ef;
+  background: white;
+  color: #75657c;
+}
+
+.big-button {
+  padding: 13px 22px;
+}
+
+/* =====================================
+   5. HOME PAGE
+===================================== */
+
+.start-panel {
+  max-width: 600px;
+  padding: 35px 25px;
+  text-align: center;
+}
+
+.start-illustration {
+  margin-bottom: 12px;
+  font-size: 37px;
+}
+
+.start-panel>p {
+  max-width: 420px;
+  margin: 10px auto 22px;
+  color: #94869a;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.rules-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 20px 0 25px;
+}
+
+.rules-grid>div {
+  padding: 14px 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border: 1px solid #f2e2ed;
+  border-radius: 13px;
+  background: #fff8fc;
+}
+
+.rules-grid strong {
+  color: #c65b94;
+  font-family: 'Nunito', sans-serif;
+  font-size: 23px;
+}
+
+.rules-grid span {
+  color: #94869a;
+  font-size: 10px;
+}
+
+/* =====================================
+   6. TIMERS AND PROGRESS
+===================================== */
+
+.timer {
+  min-width: 105px;
+  padding: 12px 15px;
+  border: 1px solid #f3d6e6;
+  border-radius: 13px;
+  background: #fff0f7;
+  color: #913b70;
+  font-size: 21px;
+  font-weight: 900;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+}
+
+.timer span {
+  font-size: 15px;
+}
+
+.timer-urgent {
+  border-color: #f3b4b4;
+  background: #fff0f0;
+  color: #bd3c4e;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  50% {
+    transform: scale(1.03);
+  }
+}
+
+.progress-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 18px;
+  color: #928397;
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.progress-track {
+  flex: 1;
+  height: 7px;
+  overflow: hidden;
+  border-radius: 99px;
+  background: #f4eaf2;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #ed8db9, #b99af5);
+  transition: width 0.25s ease;
+}
+
+/* =====================================
+   7. WORD CARD AND DRAWING TOOLBAR
+===================================== */
+
+.word-card {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 15px 18px;
+  border: 1px solid #f5d5e6;
+  border-radius: 15px;
+  background: linear-gradient(100deg, #fff0f7, #fff9fc);
+}
+
+.word-icon {
+  display: grid;
+  place-items: center;
+  width: 43px;
+  height: 43px;
+  flex-shrink: 0;
+  border-radius: 13px;
+  background: white;
+  font-size: 22px;
+}
+
+.word-card h3 {
+  margin: 4px 0 0;
+  font-family: 'Nunito', sans-serif;
+  font-size: 22px;
+  font-weight: 900;
+  overflow-wrap: anywhere;
+}
+
+.word-card .small-label {
+  font-size: 9px;
+}
+
+.drawing-toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding: 16px 0;
+}
+
+.color-tools {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.color-dot {
+  width: 23px;
+  height: 23px;
+  border: 3px solid white;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px #e8dce8;
+}
+
+.color-dot.selected {
+  box-shadow: 0 0 0 2px #c57aa5;
+}
+
+.brush-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #82738a;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.brush-control input {
+  width: 85px;
+  accent-color: #e87eb0;
+}
+
+/* =====================================
+   8. DRAWING CANVAS
+===================================== */
+
+.canvas-frame {
+  overflow: hidden;
+  border: 1px solid #e9dfea;
+  border-radius: 14px;
+  background-color: white;
+  background-image: radial-gradient(#f0e5ef 0.8px, transparent 0.8px);
+  background-size: 18px 18px;
+}
+
+.drawing-canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 900 / 460;
+  cursor: crosshair;
+  touch-action: none;
+}
+
+.drawing-footer,
+.submit-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 18px;
+  flex-shrink: 0;
+}
+
+.drawing-footer>span,
+.submit-row>span {
+  color: #a193a7;
+  font-size: 11px;
+}
+
+/* =====================================
+   9. DRAWING RECAP AND GALLERY
+===================================== */
+
+.brain-badge {
+  padding: 10px 12px;
+  border-radius: 11px;
+  background: #f1eaff;
+  color: #7c59ae;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.drawing-gallery,
+.guess-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 13px;
+}
+
+.gallery-card,
+.guess-card {
+  min-width: 0;
+  padding: 10px;
+  border: 1px solid #f0e2ed;
+  border-radius: 13px;
+  background: #fffafd;
+}
+
+.gallery-number {
+  display: block;
+  margin-bottom: 7px;
+  color: #a56c8e;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.gallery-card img,
+.guess-card img,
+.result-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1.25;
+  object-fit: contain;
+  border: 1px solid #f1e8f0;
+  border-radius: 9px;
+  background-color: white;
+  background-image: radial-gradient(#f0e5ef 0.7px, transparent 0.7px);
+  background-size: 12px 12px;
+}
+
+.empty-drawing {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1.25;
+  border: 1px dashed #e8dbe8;
+  border-radius: 9px;
+  color: #b3a2b7;
+  font-size: 11px;
+}
+
+.recap-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  margin-top: 24px;
+}
+
+.recap-actions p {
+  color: #94869a;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* =====================================
+   10. GUESSING PAGE
+===================================== */
+
+.guess-progress {
+  margin: 0 0 17px;
+  padding: 11px 13px;
+  border-radius: 10px;
+  background: #fff4f9;
+  color: #98748d;
+  font-size: 11px;
+}
+
+.guess-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.guess-card .gallery-number {
+  margin-bottom: 0;
+}
+
+.answer-label {
+  color: #8c7b92;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.guess-card input {
+  width: 100%;
+  min-width: 0;
+  padding: 10px 9px;
+  border: 1px solid #e8d9ed;
+  border-radius: 9px;
+  outline: none;
+  background: white;
+  color: #30263b;
+  font-size: 12px;
+}
+
+.guess-card input:focus {
+  border-color: #d88ab5;
+  box-shadow: 0 0 0 2px #f8dced;
+}
+
+/* =====================================
+   11. RESULTS PAGE
+===================================== */
+
+.results-heading {
+  margin-bottom: 25px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.results-heading>p {
+  color: #94869a;
+  font-size: 13px;
+}
+
+.score-circle {
+  width: 115px;
+  height: 115px;
+  margin: 18px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 6px solid #f5d8e9;
+  border-radius: 50%;
+  background: #fff4f9;
+}
+
+.score-circle strong {
+  color: #c65b94;
+  font-family: 'Nunito', sans-serif;
+  font-size: 36px;
+}
+
+.score-circle span {
+  color: #94869a;
+  font-size: 10px;
+}
+
+.results-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.result-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  padding: 10px;
+  border: 1px solid #f0e2ed;
+  border-radius: 13px;
+  background: #fffafd;
+}
+
+.result-card img,
+.result-card .empty-drawing {
+  width: 95px;
+  flex-shrink: 0;
+}
+
+.result-details {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.result-details strong {
+  overflow-wrap: anywhere;
+  font-family: 'Nunito', sans-serif;
+  font-size: 16px;
+}
+
+.answer-correct,
+.answer-wrong {
+  font-size: 10px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.answer-correct {
+  color: #287449;
+}
+
+.answer-wrong {
+  color: #a8445a;
+}
+
+.play-again {
+  display: block;
+  margin: 25px auto 0;
+}
+
+/* =====================================
+   12. FIXED SCREEN GAME PHASES
+===================================== */
+
+.dd-app.setup-phase,
+.dd-app.drawing-phase,
+.dd-app.flashback-phase,
+.dd-app.guessing-phase,
+.dd-app.results-phase {
+  height: 100vh;
+  height: 100dvh;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding-bottom: 6px;
+}
+
+.dd-app.setup-phase .topbar,
+.dd-app.drawing-phase .topbar,
+.dd-app.flashback-phase .topbar,
+.dd-app.guessing-phase .topbar,
+.dd-app.results-phase .topbar {
+  flex-shrink: 0;
+  padding: 8px 0;
+}
+
+.dd-app.setup-phase .welcome,
+.dd-app.drawing-phase .welcome,
+.dd-app.flashback-phase .welcome,
+.dd-app.guessing-phase .welcome,
+.dd-app.results-phase .welcome {
+  flex-shrink: 0;
+  margin: 4px auto 6px;
+}
+
+.dd-app.setup-phase .welcome h1,
+.dd-app.drawing-phase .welcome h1,
+.dd-app.flashback-phase .welcome h1,
+.dd-app.guessing-phase .welcome h1,
+.dd-app.results-phase .welcome h1 {
+  margin: 2px 0;
+  font-size: clamp(22px, 3vw, 30px);
+}
+
+.dd-app.setup-phase .welcome p,
+.dd-app.drawing-phase .welcome p,
+.dd-app.flashback-phase .welcome p,
+.dd-app.guessing-phase .welcome p,
+.dd-app.results-phase .welcome p {
+  margin: 3px 0;
+  font-size: 11px;
+}
+
+.dd-app.setup-phase .game-panel,
+.dd-app.drawing-phase .game-panel,
+.dd-app.flashback-phase .game-panel,
+.dd-app.guessing-phase .game-panel,
+.dd-app.results-phase .game-panel {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 12px 18px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.dd-app.setup-phase .page-footer,
+.dd-app.drawing-phase .page-footer,
+.dd-app.flashback-phase .page-footer,
+.dd-app.guessing-phase .page-footer,
+.dd-app.results-phase .page-footer {
+  flex-shrink: 0;
+  padding-top: 5px;
+}
+
+/* =====================================
+   13. CUSTOMIZATION PAGE
+===================================== */
+
+.dd-app.setup-phase .setup-panel {
+  position: relative;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 12px;
+  padding: 12px 24px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.setup-heading h2 {
+  margin: 4px 0;
+  font-size: 25px;
+}
+
+.setup-heading p {
+  margin: 4px 0;
+  font-size: 12px;
+}
+
+.setup-options {
+  width: min(100%, 850px);
+  margin-left: auto;
+  margin-right: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  justify-content: center;
+}
+
+.setup-option {
+  min-width: 0;
+  padding: 16px 20px;
+  border: 1px solid #f0e2ed;
+  border-radius: 15px;
+  background: #fffafd;
+}
+
+.setup-option h3 {
+  margin: 0 0 14px;
+  font-size: 17px;
+}
+
+.setup-colors {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.setup-colors .color-dot {
+  width: 32px;
+  height: 32px;
+}
+
+.setup-brush {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+}
+
+.setup-brush input {
+  width: 100%;
+  accent-color: #e87eb0;
+}
+
+.brush-preview {
+  height: 42px;
+  display: grid;
+  place-items: center;
+}
+
+.setup-test-card {
+  width: min(100%, 850px);
+  margin-left: auto;
+  margin-right: auto;
+  padding: 16px 20px;
+  text-align: left;
+}
+
+.setup-test-card h3 {
+  text-align: left;
+}
+
+.setup-test-canvas-frame {
+  position: relative;
+  width: 100%;
+  height: 115px;
+  overflow: hidden;
+  border: 2px dashed #e5b8d0;
+  border-radius: 13px;
+  background-color: white;
+  background-image: radial-gradient(#f0e5ef 0.8px, transparent 0.8px);
+  background-size: 15px 15px;
+}
+
+.setup-test-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+  cursor: crosshair;
+}
+
+.setup-test-hint {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: #c5a4b5;
+  font-size: 12px;
+  pointer-events: none;
+}
+
+.setup-clear-button {
+  display: block;
+  min-width: 95px;
+  min-height: 34px;
+  margin: 10px 0 0 auto;
+  padding: 8px 20px;
+  border: 1px solid #edc3d9;
+  border-radius: 10px;
+  background: #fff0f7;
+  color: #a64f7d;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  box-shadow: 0 2px 5px #e8bfd433;
+  transition: all 0.2s ease;
+}
+
+.setup-clear-button:hover {
+  background: #f8d8e8;
+  border-color: #e7a9c9;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px #e8bfd455;
+}
+
+.setup-clear-button:active {
+  transform: scale(0.97);
+}
+
+.setup-play-area {
+  position: relative;
+  z-index: 20;
+  width: min(100%, 850px);
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  pointer-events: auto;
+}
+
+.setup-play-button {
+  position: relative;
+  z-index: 21;
+  width: 100%;
+  min-width: 0;
+  padding: 12px 20px;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+/* =====================================
+   14. DRAWING RECAP
+===================================== */
+
+.dd-app.flashback-phase .game-panel {
+  gap: 10px;
+}
+
+.dd-app.flashback-phase .game-topline {
+  flex-shrink: 0;
+  margin-bottom: 0;
+}
+
+.dd-app.flashback-phase .drawing-gallery {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  overflow: hidden;
+}
+
+.dd-app.flashback-phase .gallery-card {
+  min-width: 0;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 4px;
+  padding: 7px;
+  overflow: hidden;
+}
+
+.dd-app.flashback-phase .gallery-card img,
+.dd-app.flashback-phase .gallery-card .empty-drawing {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  height: 0;
+  aspect-ratio: auto;
+  object-fit: contain;
+}
+
+.dd-app.flashback-phase .gallery-number {
+  flex-shrink: 0;
+  margin-bottom: 3px;
+  font-size: 10px;
+}
+
+.dd-app.flashback-phase .recap-actions {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 0;
+  padding: 5px 0;
+}
+
+.dd-app.flashback-phase .recap-actions p {
+  margin: 0;
+  font-size: 13px;
+}
+
+.dd-app.flashback-phase .recap-actions .primary-button {
+  flex-shrink: 0;
+  margin: 0;
+}
+
+/* =====================================
+   15. GUESSING ROUND - UPDATED
+===================================== */
+
+/* Panel layout */
+
+.dd-app.guessing-phase .game-panel {
+  gap: 0;
+  padding: 13px 18px;
+}
+
+.dd-app.guessing-phase .game-topline {
+  flex-shrink: 0;
+  margin-bottom: 10px;
+}
+
+.dd-app.guessing-phase .game-topline h2 {
+  margin: 2px 0;
+  font-size: 21px;
+}
+
+.dd-app.guessing-phase .game-topline p {
+  margin: 3px 0 0;
+  font-size: 11px;
+}
+
+.dd-app.guessing-phase .timer {
+  min-width: 85px;
+  padding: 7px 10px;
+  font-size: 18px;
+}
+
+.dd-app.guessing-phase .guess-progress {
+  flex-shrink: 0;
+  margin: 0 0 13px;
+  padding: 9px 12px;
+}
+
+/*
+IMPORTANT:
+The JSX places guess-grid and submit-row
+inside a FORM. The form must be flex too.
+*/
+
+.dd-app.guessing-phase .game-panel form {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* 10 cards: 5 columns x 2 rows */
+
+.dd-app.guessing-phase .guess-grid {
+  flex: 1;
+  min-height: 0;
+  margin: 5px 0 12px;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  align-content: stretch;
+  gap: 12px;
+}
+
+.dd-app.guessing-phase .guess-card {
+  min-width: 0;
+  min-height: 0;
+  padding: 9px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 6px;
+  overflow: hidden;
+}
+
+.dd-app.guessing-phase .guess-card .gallery-number {
+  flex-shrink: 0;
+  margin: 0;
+  font-size: 9px;
+}
+
+.dd-app.guessing-phase .guess-card img,
+.dd-app.guessing-phase .guess-card .empty-drawing {
+  width: 100%;
+  height: clamp(70px, 12vh, 105px);
+  min-height: 0;
+  flex-shrink: 0;
+  aspect-ratio: 900 / 460;
+  object-fit: contain;
+}
+
+.dd-app.guessing-phase .answer-label {
+  flex-shrink: 0;
+  margin-top: 2px;
+  font-size: 10px;
+}
+
+.dd-app.guessing-phase .guess-card input {
+  width: 100%;
+  min-width: 0;
+  flex-shrink: 0;
+  padding: 8px 9px;
+  border-radius: 8px;
+  font-size: 11px;
+}
+
+/* Submit row stays at the bottom */
+
+.dd-app.guessing-phase .submit-row {
+  flex-shrink: 0;
+  margin-top: auto;
+  padding: 10px 0 3px;
+  border-top: 1px solid #f4e8f0;
+  gap: 12px;
+}
+
+.dd-app.guessing-phase .submit-row .primary-button {
+  padding: 9px 18px;
+}
+
+/* =====================================
+   16. FINAL SCORING - UPDATED
+===================================== */
+
+.dd-app.results-phase .game-panel {
+  gap: 0;
+  padding: 10px 16px;
+}
+
+.dd-app.results-phase .results-heading {
+  flex-shrink: 0;
+  margin: 0 0 9px;
+  text-align: center;
+}
+
+.dd-app.results-phase .results-heading h2 {
+  margin: 2px 0;
+  font-size: 23px;
+}
+
+.dd-app.results-phase .results-heading>p {
+  margin: 5px 0;
+  font-size: 11px;
+}
+
+.dd-app.results-phase .score-circle {
+  width: 75px;
+  height: 75px;
+  margin: 6px auto;
+  border-width: 4px;
+}
+
+.dd-app.results-phase .score-circle strong {
+  font-size: 25px;
+}
+
+.dd-app.results-phase .score-circle span {
+  font-size: 9px;
+}
+
+/* 10 result cards: 5 columns x 2 rows */
+
+.dd-app.results-phase .results-list {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  align-content: stretch;
+  gap: 10px;
+}
+
+.dd-app.results-phase .result-card {
+  min-width: 0;
+  min-height: 0;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-evenly;
+  gap: 7px;
+  overflow: hidden;
+}
+
+/* Drawing preview */
+
+.dd-app.results-phase .result-card img,
+.dd-app.results-phase .result-card .empty-drawing {
+  display: block;
+  width: 100%;
+  height: clamp(70px, 11vh, 100px);
+  min-height: 0;
+  flex-shrink: 0;
+  aspect-ratio: 900 / 460;
+  object-fit: contain;
+}
+
+/* Answer and correction */
+
+.dd-app.results-phase .result-details {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  padding: 3px 2px;
+  overflow: hidden;
+}
+
+.dd-app.results-phase .result-details .gallery-number {
+  flex-shrink: 0;
+  margin: 0;
+  font-size: 8px;
+}
+
+.dd-app.results-phase .result-details strong {
+  flex-shrink: 0;
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+.dd-app.results-phase .answer-correct,
+.dd-app.results-phase .answer-wrong {
+  display: block;
+  font-size: 9px;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.dd-app.results-phase .play-again {
+  flex-shrink: 0;
+  margin: 9px auto 3px;
+  padding: 9px 22px;
+}
+
+/* =====================================
+   17. SMALL LAPTOP SCREENS
+===================================== */
+
+@media (max-height: 800px) and (min-width: 651px) {
+  .dd-app.setup-phase .setup-panel {
+    gap: 7px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+  }
+
+  .setup-test-canvas-frame {
+    height: 85px;
+  }
+
+  .setup-option {
+    padding: 11px 16px;
+  }
+
+  .setup-play-button {
+    padding: 9px 20px;
+  }
+
+  .dd-app.flashback-phase .game-panel {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    gap: 7px;
+  }
+
+  .dd-app.flashback-phase .drawing-gallery {
+    gap: 7px;
+  }
+
+  .dd-app.flashback-phase .gallery-card {
+    padding: 5px;
+  }
+
+  .dd-app.guessing-phase .game-panel,
+  .dd-app.results-phase .game-panel {
+    padding: 7px 12px;
+  }
+
+  .dd-app.guessing-phase .game-topline {
+    margin-bottom: 6px;
+  }
+
+  .dd-app.guessing-phase .guess-progress {
+    margin-bottom: 7px;
+    padding: 7px 10px;
+  }
+
+  .dd-app.guessing-phase .guess-grid {
+    gap: 8px;
+    margin-top: 3px;
+    margin-bottom: 7px;
+  }
+
+  .dd-app.guessing-phase .guess-card {
+    padding: 6px;
+    gap: 4px;
+  }
+
+  .dd-app.guessing-phase .guess-card img,
+  .dd-app.guessing-phase .guess-card .empty-drawing {
+    height: 95px;
+  }
+
+  .dd-app.results-phase .results-heading {
+    margin-bottom: 5px;
+  }
+
+  .dd-app.results-phase .score-circle {
+    width: 65px;
+    height: 65px;
+    margin: 3px auto;
+  }
+
+  .dd-app.results-phase .score-circle strong {
+    font-size: 21px;
+  }
+
+  .dd-app.results-phase .results-list {
+    gap: 7px;
+  }
+
+  .dd-app.results-phase .result-card {
+    padding: 6px;
+    gap: 5px;
+  }
+
+  .dd-app.results-phase .result-card img,
+  .dd-app.results-phase .result-card .empty-drawing {
+    height: 100px;
+  }
+
+  .dd-app.results-phase .result-details {
+    gap: 3px;
+  }
+
+  .dd-app.results-phase .play-again {
+    margin-top: 5px;
+  }
+}
+
+/* =====================================
+   18. MOBILE RESPONSIVE
+===================================== */
+
+@media (max-width: 650px) {
+  .dd-app {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .topbar {
+    padding: 15px 0;
+  }
+
+  .brand {
+    font-size: 19px;
+  }
+
+  .topbar-note {
+    max-width: 130px;
+    font-size: 10px;
+    text-align: right;
+  }
+
+  .welcome {
+    margin-top: 27px;
+  }
+
+  .game-panel {
+    padding: 16px 12px;
+    border-radius: 16px;
+  }
+
+  .game-topline {
+    align-items: flex-start;
+  }
+
+  .game-topline h2 {
+    font-size: 21px;
+  }
+
+  .timer {
+    min-width: 85px;
+    padding: 10px 8px;
+    font-size: 18px;
+  }
+
+  .drawing-gallery,
+  .guess-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .drawing-footer,
+  .submit-row {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .drawing-footer .primary-button,
+  .submit-row .primary-button {
+    width: 100%;
+  }
+
+  .results-list {
+    grid-template-columns: 1fr;
+  }
+
+  /* Customization */
+
+  .dd-app.setup-phase .setup-panel {
+    justify-content: flex-start;
+    overflow-y: auto;
+    padding: 12px 14px;
+  }
+
+  .setup-options {
+    grid-template-columns: 1fr;
+  }
+
+  .setup-test-card {
+    padding: 13px;
+  }
+
+  /* Recap */
+
+  .dd-app.flashback-phase {
+    overflow-y: auto;
+  }
+
+  .dd-app.flashback-phase .game-panel {
+    flex: none;
+    height: auto;
+    overflow: visible;
+  }
+
+  .dd-app.flashback-phase .drawing-gallery {
+    flex: none;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: auto;
+    overflow: visible;
+  }
+
+  .dd-app.flashback-phase .gallery-card {
+    min-height: 130px;
+  }
+
+  .dd-app.flashback-phase .gallery-card img,
+  .dd-app.flashback-phase .gallery-card .empty-drawing {
+    height: auto;
+    min-height: 90px;
+    aspect-ratio: 1.25;
+  }
+
+  .dd-app.flashback-phase .recap-actions {
+    align-items: stretch;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .dd-app.flashback-phase .recap-actions .primary-button {
+    width: 100%;
+  }
+
+  /* Guessing */
+
+  .dd-app.guessing-phase {
+    height: auto;
+    min-height: 100vh;
+    min-height: 100dvh;
+    overflow-y: auto;
+  }
+
+  .dd-app.guessing-phase .game-panel {
+    flex: none;
+    min-height: auto;
+    overflow: visible;
+    padding: 14px 12px;
+  }
+
+  .dd-app.guessing-phase .game-panel form {
+    flex: none;
+    min-height: auto;
+  }
+
+  .dd-app.guessing-phase .guess-grid {
+    flex: none;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: auto;
+    gap: 12px;
+    margin: 8px 0 14px;
+  }
+
+  .dd-app.guessing-phase .guess-card {
+    min-height: 0;
+    padding: 9px;
+    gap: 7px;
+  }
+
+  .dd-app.guessing-phase .guess-card img,
+  .dd-app.guessing-phase .guess-card .empty-drawing {
+    height: auto;
+    aspect-ratio: 1.25 / 1;
+  }
+
+  .dd-app.guessing-phase .submit-row {
+    margin-top: 8px;
+    padding-top: 12px;
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .dd-app.guessing-phase .submit-row .primary-button {
+    width: 100%;
+  }
+
+  /* Results */
+
+  .dd-app.results-phase {
+    height: auto;
+    min-height: 100vh;
+    min-height: 100dvh;
+    overflow-y: auto;
+  }
+
+  .dd-app.results-phase .game-panel {
+    flex: none;
+    min-height: auto;
+    overflow: visible;
+    padding: 14px 12px;
+  }
+
+  .dd-app.results-phase .results-list {
+    flex: none;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: auto;
+    gap: 10px;
+  }
+
+  .dd-app.results-phase .result-card {
+    justify-content: flex-start;
+    gap: 7px;
+    padding: 8px;
+  }
+
+  .dd-app.results-phase .result-card img,
+  .dd-app.results-phase .result-card .empty-drawing {
+    height: auto;
+    aspect-ratio: 1.25 / 1;
+  }
+
+  .dd-app.results-phase .result-details {
+    flex: none;
+    min-height: 45px;
+  }
+
+  .dd-app.results-phase .play-again {
+    width: 100%;
+    margin-top: 15px;
+  }
+}
+
+/* =====================================
+   19. EXTRA SMALL SCREENS
+===================================== */
+
+@media (max-width: 380px) {
+  .rules-grid {
+    gap: 5px;
+  }
+
+  .rules-grid span {
+    font-size: 9px;
+  }
+
+  .word-card h3 {
+    font-size: 19px;
+  }
+
+  .dd-app.guessing-phase .guess-card {
+    padding: 6px;
+  }
+
+  .dd-app.results-phase .result-card {
+    padding: 6px;
+  }
+}
+
+/* =====================================
+   20. HOME DASHBOARD POLISH
+===================================== */
+
+
+.dd-app.idle-phase .start-panel {
+  max-width: 650px;
+  padding: 38px 32px;
+  border-radius: 24px;
+  box-shadow: 0 12px 35px rgba(190, 112, 155, 0.09);
+}
+
+.dd-app.idle-phase .leaderboard-panel {
+  max-width: none;
+  margin: 0;
+  padding: 24px;
+  height: 430px;
+  min-height: 350px;
+  border-radius: 20px;
+  box-shadow: 0 12px 35px rgba(190, 112, 155, 0.07);
+  overflow-y: auto;
+}
+
+.leaderboard-panel .game-topline {
+  margin-bottom: 15px;
+}
+
+.leaderboard-panel h2 {
+  margin: 5px 0;
+  font-family: 'Nunito', sans-serif;
+  font-size: 23px;
+  font-weight: 900;
+}
+
+.leaderboard-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.leaderboard-item {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  min-height: 58px;
+  padding: 10px 15px;
+  border: 1px solid #f2e3ed;
+  border-radius: 13px;
+  background: #fff9fc;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.leaderboard-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 14px rgba(190, 112, 155, 0.10);
+}
+
+.leaderboard-rank {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border-radius: 11px;
+  background: #fce5f0;
+  color: #a34c7b;
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.leaderboard-item:nth-child(1) .leaderboard-rank {
+  background: #fff0c9;
+  color: #a97923;
+}
+
+.leaderboard-item:nth-child(2) .leaderboard-rank {
+  background: #edf0f5;
+  color: #68768b;
+}
+
+.leaderboard-item:nth-child(3) .leaderboard-rank {
+  background: #f8e6d9;
+  color: #a56b45;
+}
+
+.leaderboard-name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  color: #514258;
+  font-size: 13px;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.leaderboard-score {
+  color: #c65b94;
+  font-family: 'Nunito', sans-serif;
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.leaderboard-panel .muted {
+  padding: 15px;
+  border-radius: 12px;
+  background: #fff8fc;
+  text-align: center;
+}
+
+/* =====================================
+21. PLAYER NAME PAGE
+===================================== */
+
+.dd-app.name-phase .start-panel {
+  max-width: 520px;
+  padding: 40px 32px;
+  border-radius: 24px;
+  box-shadow: 0 15px 40px rgba(190, 112, 155, 0.09);
+}
+
+.dd-app.name-phase .start-illustration {
+  display: grid;
+  place-items: center;
+  width: 75px;
+  height: 75px;
+  margin: 0 auto 18px;
+  border-radius: 23px;
+  background: #fff0f7;
+  font-size: 34px;
+}
+
+.dd-app.name-phase .start-panel h2 {
+  font-size: 27px;
+}
+
+.dd-app.name-phase .start-panel form {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  width: 100%;
+  max-width: 380px;
+  margin: 22px auto 12px;
+}
+
+.dd-app.name-phase .start-panel input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #ecd9e7;
+  border-radius: 12px;
+  outline: none;
+  background: #fffafd;
+  color: #30263b;
+  font-size: 13px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dd-app.name-phase .start-panel input::placeholder {
+  color: #b5a5b6;
+}
+
+.dd-app.name-phase .start-panel input:focus {
+  border-color: #e78ab5;
+  box-shadow: 0 0 0 3px #fce7f1;
+}
+
+.dd-app.name-phase .start-panel form .primary-button {
+  width: 100%;
+}
+
+.dd-app.name-phase .start-panel>.secondary-button {
+  margin-top: 8px;
+}
+
+/* =====================================
+22. HOME AND NAME PAGE RESPONSIVE
+===================================== */
+
+@media (max-width: 650px) {
+
+  .dd-app.idle-phase .start-panel,
+  .dd-app.idle-phase .leaderboard-panel,
+  .dd-app.name-phase .start-panel {
+    padding: 24px 17px;
+  }
+
+  .leaderboard-item {
+    min-height: 52px;
+    padding: 9px 11px;
+  }
+
+  .leaderboard-name {
+    font-size: 12px;
+  }
+
+  .leaderboard-score {
+    font-size: 14px;
+  }
+
+  .dd-app.name-phase .start-panel h2 {
+    font-size: 23px;
+  }
+}
+
+/* HOME PAGE LAYOUT */
+.home-content {
+  width: min(1100px, calc(100% - 40px));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 24px;
+  align-items: stretch;
+}
+
+/* LEADERBOARD - LEFT, SMALLER BOX */
+.home-content > .leaderboard-panel {
+  grid-column: 1;
+  grid-row: 1;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+/* GAME PANEL - RIGHT, LARGER BOX */
+.home-content > .start-panel {
+  grid-column: 2;
+  grid-row: 1;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+/* MOBILE VIEW */
+@media (max-width: 700px) {
+  .home-content {
+    grid-template-columns: 1fr;
+    width: calc(100% - 30px);
+    gap: 18px;
+  }
+
+  .home-content > .leaderboard-panel,
+  .home-content > .start-panel {
+    grid-column: 1;
+    grid-row: auto;
+  }
+}
