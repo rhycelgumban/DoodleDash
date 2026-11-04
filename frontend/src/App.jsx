@@ -1,10 +1,10 @@
-
 import { useCallback, useEffect, useRef, useState } from 'react'
 import './App.css'
 
 const API_URL = 'http://localhost:5000/api/words/random'
 const SCORE_API = 'http://localhost:5000/api/games/score'
 const LEADERBOARD_API = 'http://localhost:5000/api/leaderboard'
+const SESSION_API = 'http://localhost:5000/api/session'
 
 const TOTAL_WORDS = 10
 const DRAW_SECONDS = 5
@@ -60,11 +60,14 @@ function App() {
 
     const data = await response.json()
 
-    if (!data.word) {
-      throw new Error('The server did not return a word.')
+    if (!data.word || !Number.isInteger(Number(data.word_id))) {
+      throw new Error('The server did not return a valid word.')
     }
 
-    return data.word
+    return {
+      word_id: Number(data.word_id),
+      word: data.word,
+    }
   }
 
   // FETCH TOP 5 LEADERBOARD
@@ -111,25 +114,30 @@ function App() {
     finishedRef.current = false
 
     try {
-      const selected = new Set()
+      const newRound = []
+      const usedIds = new Set()
       let attempts = 0
 
-      while (selected.size < TOTAL_WORDS && attempts < 100) {
+      // Fetch 10 unique word records and keep each database word_id.
+      while (newRound.length < TOTAL_WORDS && attempts < 100) {
         const word = await fetchRandomWord()
-        selected.add(word)
         attempts++
+
+        if (!usedIds.has(word.word_id)) {
+          usedIds.add(word.word_id)
+          newRound.push({
+            word_id: word.word_id,
+            word: word.word,
+            drawing: null,
+          })
+        }
       }
 
-      if (selected.size < TOTAL_WORDS) {
+      if (newRound.length < TOTAL_WORDS) {
         throw new Error(
           'Unable to collect 10 unique words. Check your word stock.'
         )
       }
-
-      const newRound = [...selected].map((word) => ({
-        word,
-        drawing: null,
-      }))
 
       setRoundWords(newRound)
       setShowPlayConfirm(false)
@@ -143,8 +151,8 @@ function App() {
     }
   }
 
-  // SUBMIT PLAYER NAME
-  function handleNameSubmit(event) {
+  // SUBMIT PLAYER NAME AND CREATE A GUEST SESSION
+  async function handleNameSubmit(event) {
     event.preventDefault()
 
     const cleanedName = playerName.trim()
@@ -161,7 +169,29 @@ function App() {
 
     setPlayerName(cleanedName)
     setError('')
-    prepareGame()
+    setLoading(true)
+
+    try {
+      const sessionResponse = await fetch(SESSION_API, {
+        method: 'POST',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: cleanedName }),
+      })
+
+      const sessionData = await sessionResponse.json()
+
+      if (!sessionResponse.ok) {
+        throw new Error(sessionData.message || 'Could not start your player session.')
+      }
+
+      await prepareGame()
+    } catch (err) {
+      console.error('Session creation error:', err)
+      setError(err.message || 'Could not start the game. Please try again.')
+    } finally {
+      setLoading(false)
+    }
   }
 
   // BEGIN DRAWING ROUND
@@ -195,6 +225,75 @@ function App() {
     }
   }
 
+  // CENTER DRAWING BEFORE SAVING
+  function createCenteredDrawing(canvas) {
+    const ctx = canvas.getContext('2d')
+    const { width, height } = canvas
+
+    const imageData = ctx.getImageData(0, 0, width, height)
+    const pixels = imageData.data
+
+    let minX = width
+    let minY = height
+    let maxX = -1
+    let maxY = -1
+
+    // Find the actual drawing boundaries
+    for (let y = 0; y < height; y++) {
+      for (let x = 0; x < width; x++) {
+        const alpha = pixels[(y * width + x) * 4 + 3]
+
+        if (alpha > 10) {
+          minX = Math.min(minX, x)
+          minY = Math.min(minY, y)
+          maxX = Math.max(maxX, x)
+          maxY = Math.max(maxY, y)
+        }
+      }
+    }
+
+    // Return original canvas if it is empty
+    if (maxX === -1) {
+      return canvas.toDataURL('image/png')
+    }
+
+    const drawingWidth = maxX - minX + 1
+    const drawingHeight = maxY - minY + 1
+
+    const centeredCanvas = document.createElement('canvas')
+    centeredCanvas.width = width
+    centeredCanvas.height = height
+
+    const centeredCtx = centeredCanvas.getContext('2d')
+
+    const padding = 50
+
+    const scale = Math.min(
+      (width * 0.75) / drawingWidth,
+      (height * 0.75) / drawingHeight
+    )
+
+    const newWidth = drawingWidth * scale
+    const newHeight = drawingHeight * scale
+
+    const x = (width - newWidth) / 2
+    const y = (height - newHeight) / 2
+
+    centeredCtx.drawImage(
+      canvas,
+      minX,
+      minY,
+      drawingWidth,
+      drawingHeight,
+      x,
+      y,
+      newWidth,
+      newHeight
+    )
+
+    return centeredCanvas.toDataURL('image/png')
+  }
+
   // FINISH CURRENT DRAWING
   const finishDrawing = useCallback(() => {
     if (finishedRef.current || phase !== 'drawing') return
@@ -203,7 +302,7 @@ function App() {
     drawingRef.current = false
 
     const canvas = canvasRef.current
-    const drawing = canvas ? canvas.toDataURL('image/png') : null
+    const drawing = canvas ? createCenteredDrawing(canvas) : null
 
     const updated = roundWords.map((item, index) =>
       index === currentIndex ? { ...item, drawing } : item
@@ -232,6 +331,7 @@ function App() {
         item.word.trim().toLowerCase()
 
       return {
+        word_id: item.word_id,
         word: item.word,
         drawing: item.drawing,
         answer: answers[index],
@@ -282,12 +382,17 @@ function App() {
       try {
         const response = await fetch(SCORE_API, {
           method: 'POST',
+          credentials: 'include',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            username: playerName,
             score,
+            drawings: results.map((item) => ({
+              word_id: item.word_id,
+              drawing_data: item.drawing || '',
+              guess_text: item.answer.trim(),
+            })),
           }),
         })
 
@@ -310,7 +415,7 @@ function App() {
     }
 
     saveScore()
-  }, [phase, playerName, score])
+  }, [phase, playerName, score, results])
 
   // CLEAR CANVAS FOR EACH NEW WORD
   useEffect(() => {
@@ -486,7 +591,7 @@ function App() {
 
       {error && <div className="error-message">{error}</div>}
 
-      {/* PLAYER NAME PAGE */}
+      {/*PLAYER NAME PAGE*/}
       {phase === 'name' && (
         <section className="game-panel start-panel">
           <div className="start-illustration">👋 </div>
@@ -526,8 +631,7 @@ function App() {
         </section>
       )}
 
-      {/* HOME PAGE */}
-           {/* HOME PAGE */}
+      {/*HOME PAGE*/}
       {phase === 'idle' && (
         <div className="home-content">
           <section className="game-panel start-panel">
@@ -566,7 +670,7 @@ function App() {
             </button>
           </section>
 
-          {/* TOP 5 LEADERBOARD */}
+          {/*TOP 5 LEADERBOARD */}
           <section className="game-panel leaderboard-panel">
             <div className="game-topline">
               <div>
@@ -604,8 +708,8 @@ function App() {
           </section>
         </div>
       )}
-      
-      {/* CUSTOMIZATION PAGE */}
+
+      {/*CUSTOMIZATION PAGE*/}
       {phase === 'setup' && (
         <section className="game-panel setup-panel">
           <div className="setup-heading">
@@ -661,7 +765,7 @@ function App() {
             </div>
           </div>
 
-          {/* TEST DRAWING AREA */}
+          {/*TEST DRAWING AREA*/}
           <div className="setup-option setup-test-card">
             <h3>Test Your Brush</h3>
 
@@ -717,7 +821,7 @@ function App() {
         </section>
       )}
 
-      {/* PLAY CONFIRMATION */}
+      {/*PLAY CONFIRMATION*/}
       {phase === 'setup' && showPlayConfirm && (
         <div
           style={{
@@ -785,7 +889,7 @@ function App() {
         </div>
       )}
 
-      {/* DRAWING ROUND */}
+      {/*DRAWING ROUND*/}
       {phase === 'drawing' && currentWord && (
         <section className="game-panel">
           <div className="game-topline">
@@ -888,7 +992,7 @@ function App() {
         </section>
       )}
 
-      {/* DRAWING RECAP */}
+      {/*DRAWING RECAP*/}
       {phase === 'flashback' && (
         <section className="game-panel">
           <div className="game-topline">
@@ -941,7 +1045,7 @@ function App() {
         </section>
       )}
 
-      {/* GUESSING ROUND */}
+      {/*GUESSING ROUND*/}
       {phase === 'guessing' && (
         <section className="game-panel">
           <div className="game-topline">
@@ -1020,7 +1124,7 @@ function App() {
         </section>
       )}
 
-      {/* RESULTS */}
+      {/*RESULTS*/}
       {phase === 'results' && (
         <section className="game-panel">
           <div className="results-heading">
@@ -1061,7 +1165,6 @@ function App() {
                 onClick={() => {
                   saveAttemptedRef.current = false
                   setError('')
-                  setPhase('idle')
                   setPhase('results')
                 }}
               >
@@ -1123,3 +1226,4 @@ function App() {
 }
 
 export default App
+

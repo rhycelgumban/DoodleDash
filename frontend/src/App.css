@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Nunito:wght@400;600;700;800;900&display=swap');
 
-/* =====================================
+/* =========================================
    1. GLOBAL STYLES
-===================================== */
+========================================= */
 
 :root {
   font-family: 'DM Sans', sans-serif;
@@ -58,9 +58,9 @@ button:disabled {
     #fff9fc;
 }
 
-/* =====================================
+/* =========================================
    2. HEADER AND WELCOME
-===================================== */
+========================================= */
 
 .topbar {
   max-width: 1100px;
@@ -134,9 +134,9 @@ button:disabled {
   line-height: 1.7;
 }
 
-/* =====================================
+/* =========================================
    3. GENERAL GAME PANEL
-===================================== */
+========================================= */
 
 .game-panel {
   width: 100%;
@@ -193,9 +193,9 @@ button:disabled {
   font-size: 12px;
 }
 
-/* =====================================
+/* =========================================
    4. BUTTONS
-===================================== */
+========================================= */
 
 .primary-button,
 .secondary-button {
@@ -228,9 +228,9 @@ button:disabled {
   padding: 13px 22px;
 }
 
-/* =====================================
-   5. HOME PAGE
-===================================== */
+/* =========================================
+   5. HOME PAGE PANELS
+========================================= */
 
 .start-panel {
   max-width: 600px;
@@ -243,7 +243,7 @@ button:disabled {
   font-size: 37px;
 }
 
-.start-panel>p {
+.start-panel > p {
   max-width: 420px;
   margin: 10px auto 22px;
   color: #94869a;
@@ -258,7 +258,7 @@ button:disabled {
   margin: 20px 0 25px;
 }
 
-.rules-grid>div {
+.rules-grid > div {
   padding: 14px 5px;
   display: flex;
   flex-direction: column;
@@ -279,9 +279,9 @@ button:disabled {
   font-size: 10px;
 }
 
-/* =====================================
+/* =========================================
    6. TIMERS AND PROGRESS
-===================================== */
+========================================= */
 
 .timer {
   min-width: 105px;
@@ -340,9 +340,9 @@ button:disabled {
   transition: width 0.25s ease;
 }
 
-/* =====================================
+/* =========================================
    7. WORD CARD AND DRAWING TOOLBAR
-===================================== */
+========================================= */
 
 .word-card {
   display: flex;
@@ -417,9 +417,9 @@ button:disabled {
   accent-color: #e87eb0;
 }
 
-/* =====================================
+/* =========================================
    8. DRAWING CANVAS
-===================================== */
+========================================= */
 
 .canvas-frame {
   overflow: hidden;
@@ -449,15 +449,15 @@ button:disabled {
   flex-shrink: 0;
 }
 
-.drawing-footer>span,
-.submit-row>span {
+.drawing-footer > span,
+.submit-row > span {
   color: #a193a7;
   font-size: 11px;
 }
 
-/* =====================================
+/* =========================================
    9. DRAWING RECAP AND GALLERY
-===================================== */
+========================================= */
 
 .brain-badge {
   padding: 10px 12px;
@@ -500,6 +500,7 @@ button:disabled {
   width: 100%;
   aspect-ratio: 1.25;
   object-fit: contain;
+  object-position: center center;
   border: 1px solid #f1e8f0;
   border-radius: 9px;
   background-color: white;
@@ -531,9 +532,9 @@ button:disabled {
   line-height: 1.6;
 }
 
-/* =====================================
+/* =========================================
    10. GUESSING PAGE
-===================================== */
+========================================= */
 
 .guess-progress {
   margin: 0 0 17px;
@@ -577,9 +578,9 @@ button:disabled {
   box-shadow: 0 0 0 2px #f8dced;
 }
 
-/* =====================================
+/* =========================================
    11. RESULTS PAGE
-===================================== */
+========================================= */
 
 .results-heading {
   margin-bottom: 25px;
@@ -587,7 +588,7 @@ button:disabled {
   flex-shrink: 0;
 }
 
-.results-heading>p {
+.results-heading > p {
   color: #94869a;
   font-size: 13px;
 }
@@ -672,9 +673,9 @@ button:disabled {
   margin: 25px auto 0;
 }
 
-/* =====================================
+/* =========================================
    12. FIXED SCREEN GAME PHASES
-===================================== */
+========================================= */
 
 .dd-app.setup-phase,
 .dd-app.drawing-phase,
@@ -751,9 +752,9 @@ button:disabled {
   padding-top: 5px;
 }
 
-/* =====================================
+/* =========================================
    13. CUSTOMIZATION PAGE
-===================================== */
+========================================= */
 
 .dd-app.setup-phase .setup-panel {
   position: relative;
@@ -922,9 +923,9 @@ button:disabled {
   pointer-events: auto;
 }
 
-/* =====================================
+/* =========================================
    14. DRAWING RECAP
-===================================== */
+========================================= */
 
 .dd-app.flashback-phase .game-panel {
   gap: 10px;
@@ -992,11 +993,9 @@ button:disabled {
   margin: 0;
 }
 
-/* =====================================
-   15. GUESSING ROUND - UPDATED
-===================================== */
-
-/* Panel layout */
+/* =========================================
+   15. GUESSING ROUND
+========================================= */
 
 .dd-app.guessing-phase .game-panel {
   gap: 0;
@@ -1030,12 +1029,6 @@ button:disabled {
   padding: 9px 12px;
 }
 
-/*
-IMPORTANT:
-The JSX places guess-grid and submit-row
-inside a FORM. The form must be flex too.
-*/
-
 .dd-app.guessing-phase .game-panel form {
   flex: 1;
   min-height: 0;
@@ -1043,8 +1036,6 @@ inside a FORM. The form must be flex too.
   flex-direction: column;
   gap: 0;
 }
-
-/* 10 cards: 5 columns x 2 rows */
 
 .dd-app.guessing-phase .guess-grid {
   flex: 1;
@@ -1099,8 +1090,6 @@ inside a FORM. The form must be flex too.
   font-size: 11px;
 }
 
-/* Submit row stays at the bottom */
-
 .dd-app.guessing-phase .submit-row {
   flex-shrink: 0;
   margin-top: auto;
@@ -1113,9 +1102,9 @@ inside a FORM. The form must be flex too.
   padding: 9px 18px;
 }
 
-/* =====================================
-   16. FINAL SCORING - UPDATED
-===================================== */
+/* =========================================
+   16. FINAL SCORING
+========================================= */
 
 .dd-app.results-phase .game-panel {
   gap: 0;
@@ -1133,7 +1122,7 @@ inside a FORM. The form must be flex too.
   font-size: 23px;
 }
 
-.dd-app.results-phase .results-heading>p {
+.dd-app.results-phase .results-heading > p {
   margin: 5px 0;
   font-size: 11px;
 }
@@ -1152,8 +1141,6 @@ inside a FORM. The form must be flex too.
 .dd-app.results-phase .score-circle span {
   font-size: 9px;
 }
-
-/* 10 result cards: 5 columns x 2 rows */
 
 .dd-app.results-phase .results-list {
   flex: 1;
@@ -1177,8 +1164,6 @@ inside a FORM. The form must be flex too.
   overflow: hidden;
 }
 
-/* Drawing preview */
-
 .dd-app.results-phase .result-card img,
 .dd-app.results-phase .result-card .empty-drawing {
   display: block;
@@ -1189,8 +1174,6 @@ inside a FORM. The form must be flex too.
   aspect-ratio: 900 / 460;
   object-fit: contain;
 }
-
-/* Answer and correction */
 
 .dd-app.results-phase .result-details {
   flex: 1;
@@ -1232,9 +1215,9 @@ inside a FORM. The form must be flex too.
   padding: 9px 22px;
 }
 
-/* =====================================
+/* =========================================
    17. SMALL LAPTOP SCREENS
-===================================== */
+========================================= */
 
 @media (max-height: 800px) and (min-width: 651px) {
   .dd-app.setup-phase .setup-panel {
@@ -1336,9 +1319,9 @@ inside a FORM. The form must be flex too.
   }
 }
 
-/* =====================================
+/* =========================================
    18. MOBILE RESPONSIVE
-===================================== */
+========================================= */
 
 @media (max-width: 650px) {
   .dd-app {
@@ -1404,7 +1387,6 @@ inside a FORM. The form must be flex too.
   }
 
   /* Customization */
-
   .dd-app.setup-phase .setup-panel {
     justify-content: flex-start;
     overflow-y: auto;
@@ -1420,7 +1402,6 @@ inside a FORM. The form must be flex too.
   }
 
   /* Recap */
-
   .dd-app.flashback-phase {
     overflow-y: auto;
   }
@@ -1460,7 +1441,6 @@ inside a FORM. The form must be flex too.
   }
 
   /* Guessing */
-
   .dd-app.guessing-phase {
     height: auto;
     min-height: 100vh;
@@ -1512,7 +1492,6 @@ inside a FORM. The form must be flex too.
   }
 
   /* Results */
-
   .dd-app.results-phase {
     height: auto;
     min-height: 100vh;
@@ -1557,9 +1536,9 @@ inside a FORM. The form must be flex too.
   }
 }
 
-/* =====================================
+/* =========================================
    19. EXTRA SMALL SCREENS
-===================================== */
+========================================= */
 
 @media (max-width: 380px) {
   .rules-grid {
@@ -1583,28 +1562,9 @@ inside a FORM. The form must be flex too.
   }
 }
 
-/* =====================================
-   20. HOME DASHBOARD POLISH
-===================================== */
-
-
-.dd-app.idle-phase .start-panel {
-  max-width: 650px;
-  padding: 38px 32px;
-  border-radius: 24px;
-  box-shadow: 0 12px 35px rgba(190, 112, 155, 0.09);
-}
-
-.dd-app.idle-phase .leaderboard-panel {
-  max-width: none;
-  margin: 0;
-  padding: 24px;
-  height: 430px;
-  min-height: 350px;
-  border-radius: 20px;
-  box-shadow: 0 12px 35px rgba(190, 112, 155, 0.07);
-  overflow-y: auto;
-}
+/* =========================================
+   20. LEADERBOARD
+========================================= */
 
 .leaderboard-panel .game-topline {
   margin-bottom: 15px;
@@ -1694,9 +1654,9 @@ inside a FORM. The form must be flex too.
   text-align: center;
 }
 
-/* =====================================
-21. PLAYER NAME PAGE
-===================================== */
+/* =========================================
+   21. PLAYER NAME PAGE
+========================================= */
 
 .dd-app.name-phase .start-panel {
   max-width: 520px;
@@ -1754,20 +1714,317 @@ inside a FORM. The form must be flex too.
   width: 100%;
 }
 
-.dd-app.name-phase .start-panel>.secondary-button {
+.dd-app.name-phase .start-panel > .secondary-button {
   margin-top: 8px;
 }
 
-/* =====================================
-22. HOME AND NAME PAGE RESPONSIVE
-===================================== */
+/* =========================================
+   22. HOME DASHBOARD LAYOUT
+========================================= */
 
-@media (max-width: 650px) {
+.dd-app.idle-phase .start-panel {
+  max-width: 650px;
+  padding: 38px 32px;
+  border-radius: 24px;
+  box-shadow: 0 12px 35px rgba(190, 112, 155, 0.09);
+}
+
+.dd-app.idle-phase .leaderboard-panel {
+  max-width: none;
+  margin: 0;
+  padding: 24px;
+  height: auto;
+  min-height: 0;
+  border-radius: 20px;
+  box-shadow: 0 12px 35px rgba(190, 112, 155, 0.07);
+  overflow: visible;
+}
+
+.home-content {
+  width: min(1100px, calc(100% - 40px));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 24px;
+  align-items: stretch;
+}
+
+.home-content > .leaderboard-panel {
+  grid-column: 1;
+  grid-row: 1;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+.home-content > .start-panel {
+  grid-column: 2;
+  grid-row: 1;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+/* =========================================
+   23. DESKTOP HOME AND NAME
+========================================= */
+
+@media (min-width: 701px) {
+  .dd-app.idle-phase,
+  .dd-app.name-phase {
+    height: 100vh;
+    height: 100dvh;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 0 22px 10px;
+  }
+
+  .dd-app.idle-phase .topbar,
+  .dd-app.name-phase .topbar {
+    width: 100%;
+    flex-shrink: 0;
+    padding: 10px 0;
+  }
+
+  /* HOME */
+  .dd-app.idle-phase .welcome {
+    flex-shrink: 0;
+    margin: 35px auto 18px;
+  }
+
+  .dd-app.idle-phase .welcome h1 {
+    margin: 5px 0;
+    font-size: clamp(27px, 3.5vw, 45px);
+  }
+
+  .dd-app.idle-phase .welcome p {
+    margin: 5px 0;
+    font-size: 12px;
+  }
+
+  .dd-app.idle-phase .home-content {
+    flex: 1;
+    min-height: 0;
+    width: min(1100px, 100%);
+    margin:0 auto;
+    gap: 20px;
+    align-items: stretch;
+  }
+
+  .dd-app.idle-phase .leaderboard-panel,
+  .dd-app.idle-phase .start-panel {
+    height: 90%;
+    min-height: 0;
+    padding: 20px 22px;
+    overflow: hidden;
+  }
+
+  .dd-app.idle-phase .leaderboard-panel {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .dd-app.idle-phase .leaderboard-panel .game-topline {
+    flex-shrink: 0;
+    margin-bottom: 10px;
+  }
+
+  .dd-app.idle-phase .leaderboard-panel h2 {
+    font-size: 21px;
+  }
+
+  .dd-app.idle-phase .leaderboard-list {
+    flex: 1;
+    min-height: 0;
+    gap: 7px;
+    justify-content: center;
+  }
+
+  .dd-app.idle-phase .leaderboard-item {
+    min-height: 48px;
+    padding: 18px 15px;
+  }
+
+  .dd-app.idle-phase .leaderboard-rank {
+    width: 30px;
+    height: 30px;
+  }
+
+  .dd-app.idle-phase .start-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .dd-app.idle-phase .start-illustration {
+    margin-bottom: 7px;
+    font-size: 32px;
+  }
+
+  .dd-app.idle-phase .start-panel h2 {
+    font-size: 23px;
+  }
+
+  .dd-app.idle-phase .start-panel > p {
+    margin: 20px auto 15px;
+    line-height: 1.6;
+  }
+
+  .dd-app.idle-phase .rules-grid {
+    margin: 15px 0 20px;
+    gap: 5px;
+  }
+
+  .dd-app.idle-phase .rules-grid > div {
+    padding: 15px 5px;
+  }
+
+  .dd-app.idle-phase .rules-grid strong {
+    font-size: 21px;
+  }
+
+  .dd-app.idle-phase .page-footer {
+    flex-shrink: 0;
+    padding-top: 1px;
+  }
+
+  /* PLAYER NAME */
+  .dd-app.name-phase .welcome {
+  flex-shrink: 0;
+  margin: 35px auto 150px;
+  text-align: center;
+}
+
+.dd-app.name-phase .welcome h1 {
+  font-size: clamp(27px, 3.5vw, 45px);
+  margin: 10px 0;
+  line-height: 1.2;
+}
+
+.dd-app.name-phase .welcome p {
+  font-size: 12px;
+  margin: 10px 100;
+  line-height: 1.5;
+}
+  .dd-app.name-phase .start-panel {
+    width: 40%;
+    max-width: 520px;
+     margin: 0 auto auto;
+    transform: translateY(-130px);
+    padding: 20px 32px;
+  }
+
+  .dd-app.name-phase .start-illustration {
+    width: 65px;
+    height: 100px;
+    margin-bottom: 12px;
+  }
+
+  .dd-app.name-phase .start-panel form {
+    margin: 15px auto 10px;
+    gap: 10px;
+  }
+
+  .dd-app.name-phase .page-footer {
+    flex-shrink: 0;
+    padding-top: 1px;
+    transform: translateY(-68px);
+  }
+}
+
+/* =========================================
+   24. SHORT DESKTOP SCREENS
+========================================= */
+
+@media (min-width: 701px) and (max-height: 700px) {
+  .dd-app.idle-phase .topbar,
+  .dd-app.name-phase .topbar {
+    padding: 6px 0;
+  }
+
+  .dd-app.idle-phase .welcome {
+    margin: 6px auto 8px;
+  }
+
+  .dd-app.idle-phase .welcome h1 {
+    font-size: 27px;
+  }
+
+  .dd-app.idle-phase .home-content {
+    gap: 14px;
+  }
+
+  .dd-app.idle-phase .leaderboard-panel,
+  .dd-app.idle-phase .start-panel {
+    padding: 12px 16px;
+  }
+
+  .dd-app.idle-phase .leaderboard-item {
+    min-height: 42px;
+    padding: 5px 9px;
+  }
+
+  .dd-app.idle-phase .rules-grid {
+    margin: 8px 0 10px;
+  }
+
+  .dd-app.idle-phase .rules-grid > div {
+    padding: 8px 4px;
+  }
+
+  .dd-app.name-phase .welcome {
+    margin: 7px auto;
+  }
+
+  .dd-app.name-phase .start-panel {
+    padding: 18px 25px;
+  }
+
+  .dd-app.name-phase .start-illustration {
+    width: 55px;
+    height: 55px;
+    margin-bottom: 8px;
+  }
+}
+
+/* =========================================
+   25. HOME AND NAME MOBILE RESPONSIVE
+========================================= */
+
+@media (max-width: 700px) {
+  .dd-app.idle-phase,
+  .dd-app.name-phase {
+    height: auto;
+    min-height: 100vh;
+    min-height: 100dvh;
+    overflow: visible;
+    padding-bottom: 25px;
+  }
+
+  .home-content {
+    grid-template-columns: 1fr;
+    width: calc(100% - 30px);
+    gap: 18px;
+  }
+
+  .home-content > .leaderboard-panel,
+  .home-content > .start-panel {
+    grid-column: 1;
+    grid-row: auto;
+  }
 
   .dd-app.idle-phase .start-panel,
   .dd-app.idle-phase .leaderboard-panel,
   .dd-app.name-phase .start-panel {
     padding: 24px 17px;
+  }
+
+  .dd-app.idle-phase .leaderboard-panel,
+  .dd-app.idle-phase .start-panel {
+    height: auto;
+    overflow: visible;
   }
 
   .leaderboard-item {
@@ -1783,50 +2040,11 @@ inside a FORM. The form must be flex too.
     font-size: 14px;
   }
 
+  .dd-app.name-phase .start-panel {
+    margin: 20px auto;
+  }
+
   .dd-app.name-phase .start-panel h2 {
     font-size: 23px;
-  }
-}
-
-/* HOME PAGE LAYOUT */
-.home-content {
-  width: min(1100px, calc(100% - 40px));
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 24px;
-  align-items: stretch;
-}
-
-/* LEADERBOARD - LEFT, SMALLER BOX */
-.home-content > .leaderboard-panel {
-  grid-column: 1;
-  grid-row: 1;
-  width: 100%;
-  max-width: none;
-  margin: 0;
-}
-
-/* GAME PANEL - RIGHT, LARGER BOX */
-.home-content > .start-panel {
-  grid-column: 2;
-  grid-row: 1;
-  width: 100%;
-  max-width: none;
-  margin: 0;
-}
-
-/* MOBILE VIEW */
-@media (max-width: 700px) {
-  .home-content {
-    grid-template-columns: 1fr;
-    width: calc(100% - 30px);
-    gap: 18px;
-  }
-
-  .home-content > .leaderboard-panel,
-  .home-content > .start-panel {
-    grid-column: 1;
-    grid-row: auto;
   }
 }
